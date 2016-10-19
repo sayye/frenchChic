@@ -16,6 +16,12 @@
 	- Création du repository frenchChic 
 
 2016/10/14
+	- Création de l'équipe SCYM TEAM:
+		- Sai MEBARKIA
+		- Clément LAVOISIER
+		- Yannis CONSTANTIN
+		- Michel MVOUMA
+
 	- Lecture du cahier des spécifications pour chaque membre
 		- Comprendre le métier et le besoin utilisateur,
 			- Délimiter le besoin au Use Case suivant:
