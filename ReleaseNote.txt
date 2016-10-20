@@ -34,11 +34,20 @@
 		- Une architecture distribuée de type RestFul
 	
 	- Partage des tâches techniques selon les compétences et les couches MVC
-		- Model: Sai/Michel ? 
+		- Model: Sai/Michel 
+		- Tâches:
+                - creéation des domaines
+                    - Client
+                    - Produit
 		
 		- Controller: Sai/Michel ?
 
 		- View:
 			- Web: Yannis,
-			- Android: Clément 	
+			- Android: Clément 
+			
+	- Configuration de l'application pour l'Api
+	    - context-path: /frenchChic
+	    - port: 8081
+	    - package par défaut: com.scym.frenchchic
 	
