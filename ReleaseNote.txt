@@ -1,0 +1,44 @@
+# Titre:			ReleaseNote.txt
+# Description:		Document référencement chaque Release du projet French Chic
+# Auteur:			Sai MEBARKIA
+# Contrubuteurs:	Clément LAVOISIER, Michel MVOUMA, Yannis CONSTANTIN
+# Emails:			sai.mebarkia@gmail.com, clem.lavoisier@hotmail.fr, michelmvouma@gmail.com, constantin.yannis@gmail.com
+# Date:				2016/10/19
+# Version:			1.0
+
+
+2016/10/20
+	- Interfaces de communications entre les couches logicielles
+	- Développement du scénario Sign in / Sign out 
+	- Test 
+
+2016/10/19
+	- Création du repository frenchChic 
+
+2016/10/14
+	- Création de l'équipe SCYM TEAM:
+		- Sai MEBARKIA
+		- Clément LAVOISIER
+		- Yannis CONSTANTIN
+		- Michel MVOUMA
+
+	- Lecture du cahier des spécifications pour chaque membre
+		- Comprendre le métier et le besoin utilisateur,
+			- Délimiter le besoin au Use Case suivant:
+				- Sign in
+				- Sign out
+				- Présentation d'un produit ?
+		- Avoir conscience des contraintes technologiques.  
+
+	- Brainstorming sur l'architecture technologique 
+		- Une architecture distribuée de type RestFul
+	
+	- Partage des tâches techniques selon les compétences et les couches MVC
+		- Model: Sai/Michel ? 
+		
+		- Controller: Sai/Michel ?
+
+		- View:
+			- Web: Yannis,
+			- Android: Clément 	
+	
