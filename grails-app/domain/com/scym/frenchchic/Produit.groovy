@@ -1,5 +1,9 @@
 package com.scym.frenchchic
 
+import grails.rest.Resource
+
+
+@Resource(uri = '/produits', formats = ['json','xml'])
 class Produit {
     String libelle
     String description

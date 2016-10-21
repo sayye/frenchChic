@@ -128,3 +128,6 @@ grails:
 endpoints:
     jmx:
         unique-names: true
+server:
+  port: 8081
+  contextPath: /application

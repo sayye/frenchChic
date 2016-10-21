@@ -1,5 +1,8 @@
 package com.scym.frenchchic
+import grails.rest.Resource
 
+
+@Resource(uri = '/clients', formats = ['json','xml'])
 class Client {
     String numeroClient
     String login

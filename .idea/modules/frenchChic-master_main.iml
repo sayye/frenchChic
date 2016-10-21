@@ -7,7 +7,6 @@
           <root url="file://$MODULE_DIR$/../../src/main/webapp" relative="/" />
           <root url="file://$MODULE_DIR$/../../build/assets" relative="/assets" />
         </webroots>
-        <sourceRoots />
       </configuration>
     </facet>
   </component>
@@ -18,9 +17,6 @@
       <sourceFolder url="file://$MODULE_DIR$/../../grails-app/controllers" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../grails-app/domain" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../grails-app/init" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../grails-app/services" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../grails-app/taglib" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../grails-app/utils" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../grails-app/conf" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../grails-app/i18n" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../grails-app/views" type="java-resource" />

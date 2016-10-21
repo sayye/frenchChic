@@ -5,8 +5,10 @@
     <title>Welcome to Grails</title>
 
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
+    <asset:javascript src="angular.min.js" />
+    <asset:javascript src="angular-resource.min.js" />
 </head>
-<body>
+<div>
     <content tag="nav">
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>
@@ -74,6 +76,53 @@
             </div>
         </section>
     </div>
+
+
+<script type="application/javascript">
+    angular.module('frenchChic', [])
+            .controller('Product', function($scope, $http) {
+
+                $http.get('http://localhost:8081/frenchChic/products/').
+                then(function(response) {
+                    $scope.product = response.data;
+                });
+            })
+    .controller('Login', function($scope, $http) {
+        $scope.login="";
+        $scope.mdp="";
+        var data = $.param({
+            json: JSON.stringify({
+                name: $scope.login,
+                mdp:$scope.mdp
+            })
+        });
+        $http.post('http://localhost:8081/frenchChic/clients/', data).
+        then(function(response) {
+            $scope.product = response.data;
+        });
+    });
+
+</script>
+
+
+<div ng-app="frenchChic">
+    <div ng-controller="Products">
+        <p>{{product.id}}</p>
+        <p>{{product.libelle}}</p>
+    </div>
+    <form ng-submit="sendPost()">
+        <input ng-model="login"/>
+        <input ng-model="mdp"/>
+        <button type="submit">login</button>
+    </form>
+
+
+</div>
+
+
+
+<g:link resource="client">Liste des clients</g:link>
+<g:link resource="produit" >Liste des produits</g:link>
 
 </body>
 </html>

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/frenchChic-master.iml" filepath="$PROJECT_DIR$/.idea/modules/frenchChic-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/frenchChic-master_integrationTest.iml" filepath="$PROJECT_DIR$/.idea/modules/frenchChic-master_integrationTest.iml" group="frenchChic-master" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/frenchChic-master_main.iml" filepath="$PROJECT_DIR$/.idea/modules/frenchChic-master_main.iml" group="frenchChic-master" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/frenchChic-master_test.iml" filepath="$PROJECT_DIR$/.idea/modules/frenchChic-master_test.iml" group="frenchChic-master" />
     </modules>
