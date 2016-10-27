@@ -80,46 +80,45 @@
 
 <script type="application/javascript">
     angular.module('frenchChic', [])
-            .controller('Product', function($scope, $http) {
-
-                $http.get('http://localhost:8081/frenchChic/products/').
-                then(function(response) {
-                    $scope.product = response.data;
-                });
-            })
     .controller('Login', function($scope, $http) {
-        $scope.login="";
+        $scope.username="";
         $scope.mdp="";
-        var data = $.param({
-            json: JSON.stringify({
-                name: $scope.login,
-                mdp:$scope.mdp
-            })
-        });
-        $http.post('http://localhost:8081/frenchChic/clients/', data).
-        then(function(response) {
-            $scope.product = response.data;
-        });
+
+        $scope.authenticate = function() {
+            var req={
+                method: 'POST',
+                url: 'http://localhost:8081/application/login/authenticate',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: {pseudo: $scope.username, mdp: $scope.mdp}
+            }
+
+            $http(req).then(function (response) {
+                $scope.client = response.data;
+                console.log("response.data"+JSON.stringify(response.data));
+            });
+        }
     });
+
+
 
 </script>
 
 
 <div ng-app="frenchChic">
-    <div ng-controller="Products">
-        <p>{{product.id}}</p>
-        <p>{{product.libelle}}</p>
-    </div>
-    <form ng-submit="sendPost()">
-        <input ng-model="login"/>
+    <div ng-controller="Login">
+    <form ng-submit="authenticate()"  method="post" >
+        <input ng-model="username"/>
         <input ng-model="mdp"/>
         <button type="submit">login</button>
     </form>
+        <p>{{client.id}}</p>
+    </div>
 
 
+    <p>{{client.id}}</p>
 </div>
-
-
 
 <g:link resource="client">Liste des clients</g:link>
 <g:link resource="produit" >Liste des produits</g:link>

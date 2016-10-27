@@ -13,9 +13,7 @@ dataSource:
     username: sa
     password:
 
-server:
-    port: 8081
-    context-path: /frenchChic
+
 
 environments:
     development:

@@ -9,7 +9,7 @@
 
 V1.1 : 2016/10/20
 	- Interfaces de communications entre les couches logicielles
-	- Développement du scénario Sign in / Sign out 
+	- Développement du scénario Sign in
 	- Test 
 
 V1.0 : 2016/10/19
