@@ -56,11 +56,12 @@ dependencies {
     profile "org.grails.profiles:web"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.8.2"
     runtime "com.h2database:h2"
+    //runtime "org.grails.plugins:angularjs-resources:1.4.2"
     testCompile "org.grails:grails-plugin-testing"
     testCompile "org.grails.plugins:geb"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
-    //runtime "org.grails.plugins:angularjs-resources:1.4.2"
+
     //compile "org.grails.plugins:angularjs:1.0.0"
 }
 

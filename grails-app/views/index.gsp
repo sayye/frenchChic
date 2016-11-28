@@ -2,102 +2,63 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Welcome to Grails</title>
+    <title>French Chic</title>
 
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
     <asset:javascript src="angular.min.js" />
     <asset:javascript src="angular-resource.min.js" />
+    <asset:javascript src="angular-cookies.min.js" />
 </head>
-<div>
-    <content tag="nav">
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Application Status <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Environment: ${grails.util.Environment.current.name}</a></li>
-                <li><a href="#">App profile: ${grailsApplication.config.grails?.profile}</a></li>
-                <li><a href="#">App version:
-                    <g:meta name="info.app.version"/></a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Grails version:
-                    <g:meta name="info.app.grailsVersion"/></a>
-                </li>
-                <li><a href="#">Groovy version: ${GroovySystem.getVersion()}</a></li>
-                <li><a href="#">JVM version: ${System.getProperty('java.version')}</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Reloading active: ${grails.util.Environment.reloadingAgentEnabled}</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Artefacts <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Controllers: ${grailsApplication.controllerClasses.size()}</a></li>
-                <li><a href="#">Domains: ${grailsApplication.domainClasses.size()}</a></li>
-                <li><a href="#">Services: ${grailsApplication.serviceClasses.size()}</a></li>
-                <li><a href="#">Tag Libraries: ${grailsApplication.tagLibClasses.size()}</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installed Plugins <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <g:each var="plugin" in="${applicationContext.getBean('pluginManager').allPlugins}">
-                    <li><a href="#">${plugin.name} - ${plugin.version}</a></li>
-                </g:each>
-            </ul>
-        </li>
-    </content>
-
-    <div class="svg" role="presentation">
-        <div class="grails-logo-container">
-            <asset:image src="grails-cupsonly-logo-white.svg" class="grails-logo"/>
-        </div>
-    </div>
-
-    <div id="content" role="main">
-        <section class="row colset-2-its">
-            <h1>Welcome to Grails</h1>
-
-            <p>
-                Congratulations, you have successfully started your first Grails application! At the moment
-                this is the default page, feel free to modify it to either redirect to a controller or display
-                whatever content you may choose. Below is a list of controllers that are currently deployed in
-                this application, click on each to execute its default action:
-            </p>
-
-            <div id="controllers" role="navigation">
-                <h2>Available Controllers:</h2>
-                <ul>
-                    <g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-                        <li class="controller">
-                            <g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link>
-                        </li>
-                    </g:each>
-                </ul>
-            </div>
-        </section>
-    </div>
 
 
 <script type="application/javascript">
-    angular.module('frenchChic', [])
-    .controller('Login', function($scope, $http) {
+    angular.module('frenchChic', ['ngCookies'])
+    .controller('Login', function($scope, $http, $cookies) {
         $scope.username="";
         $scope.mdp="";
+        $scope.error=false;
+        $scope.empty=false;
+        // Retrieving a cookie
+        //var favoriteCookie = $cookies.get('myFavorite');
+        // Setting a cookie
+        //$cookies.put('myFavorite', 'oatmeal');
+        //var favoriteCookie = $cookies.get('myFavorite');
+
 
         $scope.authenticate = function() {
-            var req={
-                method: 'POST',
-                url: 'http://localhost:8081/application/login/authenticate',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                data: {pseudo: $scope.username, mdp: $scope.mdp}
-            }
+            if($scope.username && $scope.mdp) {
+                var req={
+                    method: 'POST',
+                    url: 'http://localhost:8081/application/login/authenticate',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: {pseudo: $scope.username, mdp: $scope.mdp}
+                }
 
-            $http(req).then(function (response) {
-                $scope.client = response.data;
-                console.log("response.data"+JSON.stringify(response.data));
-            });
+                $http(req).then(function (response) {
+                    if(response){
+                        $scope.client = response.data;
+                        console.log("response.data"+JSON.stringify(response.data));
+                        $scope.error = false;
+                        $scope.empty = false;
+
+                    }
+                    else {
+                        console.log("Erreur: reponse vide");
+                        $scope.error = true;
+                        $scope.empty = false;
+                    }
+                    console.log(response);
+                }, function(data) {
+                    console.log("Erreur: reponse vide");
+                    $scope.error = true;
+                    $scope.empty = false;
+                });
+            }
+            else {
+                $scope.empty = true;
+            }
         }
     });
 
@@ -106,22 +67,71 @@
 </script>
 
 
-<div ng-app="frenchChic">
-    <div ng-controller="Login">
-    <form ng-submit="authenticate()"  method="post" >
-        <input ng-model="username"/>
-        <input ng-model="mdp"/>
-        <button type="submit">login</button>
-    </form>
-        <p>{{client.id}}</p>
+<div id="content">
+    <div ng-app="frenchChic">
+        <h1>French Chic</h1>
+        <div ng-controller="Login">
+            <form ng-submit="authenticate()"  method="post" >
+                <table>
+                    <tr>
+                        <td>
+                            <label>Pseudo </label>
+                        </td>
+                        <td>
+                            <input type="text" ng-model="username"/>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <td>
+                            <label>Mot de passe </label>
+                        </td>
+                        <td>
+                            <input type="password" ng-model="mdp"/>
+                        </td>
+                    </tr>
+                </table>
+            </br>
+                <button type="submit">S'identifier</button>
+            </form>
+            <div ng-if="error">
+                <p>
+                    Erreur, identification invalide.
+                </p>
+            </div>
+            <div ng-if="empty">
+                <p>
+                    Veuillez indiquez votre pseudo et votre mot de passe.
+                </p>
+            </div>
+        </div>
     </div>
-
-
-    <p>{{client.id}}</p>
 </div>
 
-<g:link resource="client">Liste des clients</g:link>
-<g:link resource="produit" >Liste des produits</g:link>
+
+
+<style type="text/css">
+#content {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+    text-align: center;
+}
+h1 {
+    color:#cc00cc;
+    text-align: center;
+}
+form {
+    margin: 0 auto;
+}
+button {
+    border: none;
+}
+</style>
 
 </body>
 </html>
